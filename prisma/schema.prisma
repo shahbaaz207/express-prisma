@@ -1,0 +1,68 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model distributeurs {
+  id    Int     @id @default(autoincrement())
+  id_dist                     Int   
+  Raison_sociale              String        @db.VarChar(255)
+  Remarque                    String        @db.MediumText
+  Souscriptions               String        @db.MediumText
+  Pdf_convention              String        @db.VarChar(255)
+  email_signataire            String        @db.VarChar(255)
+  email_compta                String        @db.VarChar(255)
+  civ                         String        @db.VarChar(255)
+  last_name                   String        @db.VarChar(255)
+  first_name                  String        @db.VarChar(255)
+  title                       String        @db.VarChar(255)
+  capital                     String        @db.VarChar(255)
+  address                     String        @db.VarChar(255)
+  rcsnb                       String        @db.VarChar(255)
+  rcsof                       String        @db.VarChar(255)
+  oriasNb                     String        @db.VarChar(255)
+  phone                       String        @db.VarChar(255)
+  email_notification          String        @db.VarChar(255)
+  IBAN                        String        @db.VarChar(255)
+}
+
+model Souscriptions {
+ id                         Int        @id @default(autoincrement())
+ Investisseur               String     @db.VarChar(255)
+ Produit                    String     @db.VarChar(255)
+ Montant                    String     @db.VarChar(255)
+ Droit                      String     @map("Droit d'entrée")
+ DE_WAM                     String     @db.VarChar(255)
+ Mode_Paiement              String     @map("Mode Paiement")
+ Cash_in                    String     @db.VarChar(255)
+ Last_Modified              DateTime   @map("Last Modified")
+ Date_BS                    DateTime   @map("Date BS")
+ Num_ODDO                   Int        @map("Num ODDO")
+ Date                       String     @map("Date d'effet")
+ Attestation_ODDO           String     @db.VarChar(255)
+ attestation                String     @db.VarChar(255)
+ Id_dist                    Int             
+ Fonds                      String     @db.VarChar(255)
+}
+
+model com_note{
+ id                       Int          @id @default(autoincrement())
+ note_id                  Int
+ record_id                String       @db.VarChar(255)
+ description              String       @db.VarChar(255)
+ id_dist                  Int
+ nom                      String       @db.VarChar(255)
+ adresse                  String       @db.MediumText
+ email_dist               String       @db.VarChar(255)
+ periode                  String       @db.VarChar(255)
+ note_date                DateTime
+ total                    Float       @db.Double
+ urlPdf                   String       @db.VarChar(255)
+ mail_sent                Int          @db.SmallInt
+}
